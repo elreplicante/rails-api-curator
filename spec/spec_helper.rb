@@ -89,4 +89,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  config.before(:suite) do
+      Curator.data_store.remove_all_keys
+    end
+
+  config.after(:each) do
+    Curator.data_store.reset!
+  end
 end
